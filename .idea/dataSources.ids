@@ -7,13 +7,70 @@
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <schema name="" catalog="presencedbms"/>
-    <table name="utenti" schema="" catalog="presencedbms" type="TABLE">
+    <table name="event" schema="" catalog="presencedbms" type="TABLE">
+      <column name="ID_Event" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Hour" sqlType="TIME" precision="8" scale="0" nullable="false" jdbcType="92"/>
+      <column name="Date" sqlType="DATE" precision="10" scale="0" nullable="false" jdbcType="91"/>
+      <primary-key name="PRIMARY" columns="ID_Event"/>
+    </table>
+    <table name="event_type" schema="" catalog="presencedbms" type="TABLE">
+      <column name="ID_Type" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Name_Type" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID_Type"/>
+    </table>
+    <table name="role" schema="" catalog="presencedbms" type="TABLE">
+      <column name="ID_Role" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="Name_Role" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID_Role"/>
+    </table>
+    <table name="user" schema="" catalog="presencedbms" type="TABLE">
       <column name="ID_User" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="Cognome" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
       <column name="Nome" sqlType="VARCHAR" precision="15" scale="0" nullable="false" jdbcType="12"/>
       <column name="Telefono" sqlType="VARCHAR" precision="10" scale="0" nullable="true" jdbcType="12"/>
-      <column name="Email" sqlType="VARCHAR" precision="25" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Email" sqlType="VARCHAR" precision="25" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Username" sqlType="VARCHAR" precision="25" scale="0" nullable="false" jdbcType="12"/>
+      <column name="Password" sqlType="VARCHAR" precision="25" scale="0" nullable="false" jdbcType="12"/>
+      <column name="ID_Role" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="ID_User"/>
+    </table>
+  </data-source>
+  <data-source name="MySQL - movedb@localhost" uuid="16e4263b-3a42-4fdf-8697-1179e33192c8">
+    <database-info product="MySQL" version="5.6.17" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="movedb"/>
+    <table name="event" schema="" catalog="movedb" type="TABLE">
+      <column name="ID_Event" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Hour" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="Data" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="User_ID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="Type_ID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="ID_Event"/>
+      <index name="Type_ID" unique="false" columns="Type_ID"/>
+      <index name="User_ID" unique="false" columns="User_ID"/>
+    </table>
+    <table name="role" schema="" catalog="movedb" type="TABLE">
+      <column name="ID_Role" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Name_Role" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID_Role"/>
+    </table>
+    <table name="type" schema="" catalog="movedb" type="TABLE">
+      <column name="ID_Type" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Name_Type" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="ID_Type"/>
+    </table>
+    <table name="user" schema="" catalog="movedb" type="TABLE">
+      <column name="ID_User" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="Nome" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Cognome" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Username" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Password" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="Role_ID" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="ID_User"/>
+      <index name="Role_ID" unique="false" columns="Role_ID"/>
     </table>
   </data-source>
   <data-source name="MySQL - Rilevazione_Presenze@localhost" uuid="1b72f6f4-4ae3-4e16-a5b9-91fad7a7311d">
