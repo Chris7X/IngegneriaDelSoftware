@@ -21,16 +21,16 @@ public class UtenteJDBCDAO {
 
 	public void add(UtenteBean UtenteBean) {
 		try {
-			String queryString = "INSERT INTO Utenti(ID_User,Cognome, Nome, Telefono, Email) VALUES(?,?,?,?,?)";
-			connection = getConnection();
+		 	String queryString ="INSERT INTO amici(Cognome, Nome, Telefono) VALUES(?,?,?)";
+            connection = getConnection();
 			ptmt = connection.prepareStatement(queryString);
 
 
-            ptmt.setInt(1, UtenteBean.getID_User());
+           ptmt.setInt(1, UtenteBean.getID_User());
             ptmt.setString(2, UtenteBean.getCognome());
 			ptmt.setString(3, UtenteBean.getNome());
-			ptmt.setString(4, UtenteBean.getTelefono());
-            ptmt.setString(5, UtenteBean.getEmail());
+			//ptmt.setString(4, UtenteBean.getTelefono());
+            //ptmt.setString(5, UtenteBean.getEmail());
 			ptmt.executeUpdate();
 			System.out.println("Dati Inseriti Correttamente");
 		} catch (SQLException e) {
@@ -145,7 +145,7 @@ public class UtenteJDBCDAO {
 
         //JOptionPane.showMessageDialog("Ricerca Query Fallita",this);
 		try {
-			String queryString = "SELECT * FROM utenti";
+			String queryString = "DELETE FROM amici WHERE RollNo=?";
 			connection = getConnection();
             System.out.println("Prepare statement OK");
             Statement st = connection.createStatement();

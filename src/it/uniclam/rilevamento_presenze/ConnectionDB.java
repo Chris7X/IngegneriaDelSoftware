@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class ConnectionDB {
 	String driverClassName = "com.mysql.jdbc.Driver";
 	String connectionUrl = "jdbc:mysql://localhost:3306/";
-    String dbName = "PresenceDBMS";
+    String dbName = "movedb";
 	String dbUser = "root";
 	String dbPwd = "";
 
