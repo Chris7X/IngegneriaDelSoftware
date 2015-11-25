@@ -1,4 +1,4 @@
-package it.uniclam.rilevamento_presenze;
+package it.uniclam.rilevamento_presenze.GraphicalUserInterface;
 import javax.swing.*;
 
 import java.awt.*;

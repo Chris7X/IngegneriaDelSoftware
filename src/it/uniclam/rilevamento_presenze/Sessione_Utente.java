@@ -1,10 +1,9 @@
 package it.uniclam.rilevamento_presenze;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
+import it.uniclam.rilevamento_presenze.BeanClass.UserBean;
+
 //import java.sql.ResultSetMetaData;
 //import java.sql.SQLException;
-import java.sql.Statement;
+
 //import java.util.*;
 
 public class Sessione_Utente {

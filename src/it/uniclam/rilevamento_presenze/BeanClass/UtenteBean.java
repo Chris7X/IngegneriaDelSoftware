@@ -1,4 +1,4 @@
-package it.uniclam.rilevamento_presenze;
+package it.uniclam.rilevamento_presenze.BeanClass;
 
 import java.io.Serializable;
 
@@ -17,19 +17,26 @@ public class UtenteBean implements Serializable {
 	String Nome;//Nome
 	String Telefono;//Telefono
     String Email;//Email address
+    String Username;
+    String Password;
+    int Role_ID;
+
 
 
 	public UtenteBean() {
 
 	}
 
-	public UtenteBean(int id_user ,String cognome, String nome, String telefono, String email) {
+	public UtenteBean(int id_user ,String nome, String cognome, String username,String password ,int role_id,String telefono,String email) {
 
 		this.ID_User=id_user;
         this.Cognome= cognome;
 		this.Nome= nome;
 		this.Telefono= telefono;
         this.Email=email;
+        this.Username=username;
+        this.Password=password;
+        this.Role_ID=role_id;
 	}
 
     public int getID_User() {
@@ -70,6 +77,30 @@ public class UtenteBean implements Serializable {
 
     public void setEmail(String email) {
         this.Email = email;
+    }
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        this.Username = username;
+    }
+
+    public String getPassword() {
+        return Password;
+    }
+
+    public void setPassword(String password) {
+        this.Password = Password;
+    }
+
+    public int getRole_ID() {
+        return Role_ID;
+    }
+
+    public void setRole_ID(int role_id) {
+        this.Role_ID = role_id;
     }
 
 }
