@@ -6,7 +6,7 @@ import it.uniclam.rilevamento_presenze.ConnectionDB;
 import it.uniclam.rilevamento_presenze.BeanClass.UtenteBean;
 
 import java.sql.*;
-import java.util.Calendar;
+
 import java.util.GregorianCalendar;
 
 public class UtenteJDBCDAO {
@@ -187,10 +187,6 @@ public class UtenteJDBCDAO {
 
 
     public int SELECT_NameSurname(String name,String surname,String id_user) {
-        GregorianCalendar gcalendar = new GregorianCalendar();
-//String Nom="Christian";GregorianCalendar gcalendar = new GregorianCalendar();
-  //      String Cognom="Naposli";
-        //JOptionPane.showMessageDialog("Ricerca Query Fallita",this);
 
         int state=0;
         try {

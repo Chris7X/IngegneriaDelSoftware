@@ -5,6 +5,7 @@ package it.uniclam.rilevamento_presenze.GraphicalUserInterface;
 import it.uniclam.rilevamento_presenze.JDBCDataAccessObject.EventJDBCDAO;
 import it.uniclam.rilevamento_presenze.JDBCDataAccessObject.UtenteJDBCDAO;
 import it.uniclam.rilevamento_presenze.BeanClass.UtenteBean;
+import javafx.scene.control.Alert;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -53,17 +54,7 @@ public class UtenteGUI extends JFrame implements ActionListener {
     JLabel LabelCodice;
     JButton ButtonCodice;
 
-    //OBJ CurrentTime
 
-
-    ////////////////JTEXT FILED START///////////////////////////
-
-
-
-    ////////////////JTEXT FILED END///////////////////////////
-
-
-    private Thread start;
 
     public UtenteGUI() throws UnknownHostException, IOException{
         TextBoxBADGE_IN=new JTextField();
@@ -134,18 +125,9 @@ public class UtenteGUI extends JFrame implements ActionListener {
         LabelCodice.setText("CODICE:");
 
 
-        //OBJ OROLOGIO////////////////
-
-
-
-
-
-        ///////////////////
 
         this.setTitle("Rilevazione Presenze");
         
-        ///////////////////////////////
-
 
     }
 
@@ -158,38 +140,22 @@ public class UtenteGUI extends JFrame implements ActionListener {
         EventJDBCDAO eventDB=new EventJDBCDAO();
         if (e.getSource()==ButtonBADGE_IN){
 
-
-
-          //  amicoClass.setCognome(TextBoxCognome.getText());
-            //amicoClass.setNome(TextBoxNome.getText());
-          //  amicoClass.setCodice(TextBoxCodice.getText());
-
-            //EMAIL mancante
-           // amicoDB.findAll();
-/*OK //state_TrueFalse=amicoDB.SELECT_NameSurname(TextBoxNome.getText(),TextBoxCognome.getText(),TextBoxCodice.getText());
-           // amicoDB.add1(amicoClass);
-            if (state_TrueFalse==true) {
-                System.out.println("True");//QUERY.ADD
-
-            }
-            else {System.out.println("False");}*/
             Return_ID_User=amicoDB.SELECT_NameSurname(TextBoxNome.getText(),TextBoxCognome.getText(),TextBoxCodice.getText());
             // amicoDB.add1(amicoClass);
             if (Return_ID_User!=0) {
-
-
-
                 eventDB.SELECT_OrderDate(Return_ID_User);
-
-
                 System.out.println("TrueEseguito?");//QUERY.ADD
                 System.out.println(Return_ID_User);
                 int CountEvent_IN_OUT=eventDB.SELECT_CountEvent(Return_ID_User);//Verifica quanti eventi vi sono stati per quell'utente qyel giorno
-System.out.println(CountEvent_IN_OUT+"GUIUser");
+                System.out.println(CountEvent_IN_OUT+"GUIUser");
                 if(CountEvent_IN_OUT<2)
                 {
                 eventDB.addEventIN(Return_ID_User, 1);}
-                else {System.out.println("Dipendente non INSERITO nel DB");}
+                else {//System.out.println("Dipendente non INSERITO nel DB");
+                    JOptionPane.showMessageDialog(this,
+                            "Dipendente NON inserito",
+                            "Numero di INGRESSI superato",
+                            JOptionPane.WARNING_MESSAGE);}
                 TextBoxNome.setText(" ");
                 TextBoxCognome.setText(" ");
                 TextBoxCodice.setText(" ");
@@ -220,7 +186,8 @@ System.out.println(CountEvent_IN_OUT+"GUIUser");
             IOException {
         UtenteGUI user=new UtenteGUI();
         user.setVisible(true);
-Orologio.main(args);
+//Orologio.main(args);
+
         user.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        /* AmicoJDBCDAO amicoDB=new AmicoJDBCDAO();
         AmicoBean amicoClass=new AmicoBean();
