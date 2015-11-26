@@ -176,9 +176,20 @@ public class UtenteGUI extends JFrame implements ActionListener {
             Return_ID_User=amicoDB.SELECT_NameSurname(TextBoxNome.getText(),TextBoxCognome.getText(),TextBoxCodice.getText());
             // amicoDB.add1(amicoClass);
             if (Return_ID_User!=0) {
-                System.out.println("True");//QUERY.ADD
+
+
+
+                eventDB.SELECT_OrderDate(Return_ID_User);
+
+
+                System.out.println("TrueEseguito?");//QUERY.ADD
                 System.out.println(Return_ID_User);
-                eventDB.addEventIN(Return_ID_User, 1);
+                int CountEvent_IN_OUT=eventDB.SELECT_CountEvent(Return_ID_User);//Verifica quanti eventi vi sono stati per quell'utente qyel giorno
+System.out.println(CountEvent_IN_OUT+"GUIUser");
+                if(CountEvent_IN_OUT<2)
+                {
+                eventDB.addEventIN(Return_ID_User, 1);}
+                else {System.out.println("Dipendente non INSERITO nel DB");}
                 TextBoxNome.setText(" ");
                 TextBoxCognome.setText(" ");
                 TextBoxCodice.setText(" ");
@@ -192,8 +203,12 @@ public class UtenteGUI extends JFrame implements ActionListener {
             //Controllo che prima dell'inserimento ,il dipendente sia presente nel DB
             Return_ID_User=amicoDB.SELECT_NameSurname(TextBoxNome.getText(),TextBoxCognome.getText(),TextBoxCodice.getText());
             if (Return_ID_User!=0) {
-                //eventDB.updateEventOUT(TextBoxCodice.getText());//Aggiorna NO
-                eventDB.addEventOUT(Return_ID_User);
+                int CountEvent_IN_OUT=eventDB.SELECT_CountEvent(Return_ID_User);//Verifica quanti eventi vi sono stati per quell'utente qyel giorno
+                System.out.println(CountEvent_IN_OUT + "GUIUser");
+                if(CountEvent_IN_OUT<2)
+                {
+                    eventDB.addEventOUT(Return_ID_User);}
+                else {System.out.println("Dipendente non INSERITO nel DB");}
 
             }
         }
